@@ -1,0 +1,352 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<PROJECT IID="1" BUILDPATH="C:/Users/LENOVO/AppData/Local/Temp/VSM Studio/b2e956d868aa42d69333276b7c0c9492/RPI3" VERSION="821" TYPE="SOURCE" NAME="RPI3" CONFIGURATION="Debug">
+ <FILES ATTACH="1">
+  <FILE ATTACH="1" GROUP="Source Files" NAME="Raspberry Pi 3/main.py"/>
+  <FILE ATTACH="1" GROUP="Resource Files" NAME="RPI3/showlog.py"/>
+  <FILE ATTACH="1" GROUP="Resource Files" NAME="RPI3/transport.js"/>
+  <FILE ATTACH="1" GROUP="Firmware Files" NAME="RPI3/Debug/Debug.pyz" FIRMWARE="1"/>
+ </FILES>
+ <CONFIGURATION CRC="73ca70a4f4652c9473bce165d833b6f2" TARGET="Debug" COMPILER="Python 3 (Proteus)" NAME="Debug">
+  <CONTROLLER FAMILY="Raspberry Pi" TYPE="RPI3"/>
+  <FILE TOOL="MKPYTHON">
+   <FILE NAME="Raspberry Pi 3/main.py"/>
+  </FILE>
+ </CONFIGURATION>
+ <CONFIGURATION CRC="73ca70a4f4652c9473bce165d833b6f2" TARGET="Release" COMPILER="Python 3 (Proteus)" NAME="Release">
+  <CONTROLLER FAMILY="Raspberry Pi" TYPE="RPI3"/>
+  <FILE TOOL="MKPYTHON">
+   <FILE NAME="Raspberry Pi 3/main.py"/>
+  </FILE>
+ </CONFIGURATION>
+ <HARDWARE CONTROLLER="RPI3">
+  <PERIPHERAL DESC="Raspberry Pi" VALID="1" ENABLED="1" BUILTIN="1" TYPE="CPU" ID="{452a5bb4-ed09-4ac9-94bd-4419aa8ed524}" NAME="cpu" FILE="Raspberry Pi 3" EID="00000001" OPTIONAL="1">
+   <INTERFACE EXTERNAL="cpu" OBJECT="CPU"/>
+   <DRIVER HEADER="cpu">
+    <ENUMERATION NAME="PINMODE">
+     <CONSTANT NAME="INPUT" VALUE="cpu.INPUT"/>
+     <CONSTANT NAME="OUTPUT" VALUE="cpu.OUTPUT"/>
+    </ENUMERATION>
+    <ENUMERATION NAME="PULLUP">
+     <CONSTANT NAME="OFF" VALUE="cpu.PUD_OFF"/>
+     <CONSTANT NAME="DOWN" VALUE="cpu.PUD_DOWN"/>
+     <CONSTANT NAME="UP" VALUE="cpu.PUD_UP"/>
+    </ENUMERATION>
+    <ENUMERATION NAME="INTID">
+     <CONSTANT NAME="INT0" VALUE="0"/>
+     <CONSTANT NAME="INT1" VALUE="1"/>
+    </ENUMERATION>
+    <ENUMERATION NAME="INTMODE">
+     <CONSTANT NAME="LOW" VALUE="cpu.LOW"/>
+     <CONSTANT NAME="CHANGE" VALUE="cpu.CHANGE"/>
+     <CONSTANT NAME="FALLING" VALUE="cpu.FALLING"/>
+     <CONSTANT NAME="RISING" VALUE="cpu.RISING"/>
+    </ENUMERATION>
+    <METHOD DESC="Set pin to input or output" NAME="pinMode">
+     <PARAMETER DESC="Raspberry Pi digital I/O number" TYPE="INTEGER" NAME="pin"/>
+     <PARAMETER DESC="Input or output mode" TYPE="PINMODE" NAME="mode"/>
+    </METHOD>
+    <METHOD DESC="Set pin pwm frequency" NAME="pwmMode">
+     <PARAMETER DESC="Raspberry Pi digital I/O number" TYPE="INTEGER" NAME="pin"/>
+     <PARAMETER DESC="Frequency of signal" TYPE="INTEGER" NAME="frequency"/>
+    </METHOD>
+    <METHOD DESC="Set pin pullup to off, up or down" NAME="pullUpDnControl">
+     <PARAMETER DESC="Raspberry Pi digital I/O number" TYPE="INTEGER" NAME="pin"/>
+     <PARAMETER DESC="Off, up or down mode" TYPE="PULLUP" NAME="mode"/>
+    </METHOD>
+    <METHOD DESC="Set state of digital output pin" NAME="digitalWrite">
+     <PARAMETER DESC="Raspberry Pi digital I/O number" TYPE="INTEGER" NAME="pin"/>
+     <PARAMETER DESC="Pin state" TYPE="BOOLEAN" NAME="state"/>
+    </METHOD>
+    <METHOD DESC="Read state of digital pin" NAME="digitalRead">
+     <PARAMETER DESC="Raspberry Pi digital I/O number" TYPE="INTEGER" NAME="pin"/>
+     <RETURN DESC="Pin state" DEFAULT="state" TYPE="BOOLEAN" NAME="state"/>
+    </METHOD>
+    <METHOD DESC="Set state of pwm output pin" NAME="pwmWrite">
+     <PARAMETER DESC="Raspberry Pi I/O number" TYPE="INTEGER" NAME="pin"/>
+     <PARAMETER DESC="Percentage on" TYPE="INTEGER" NAME="percentage"/>
+    </METHOD>
+    <METHOD DESC="Play a sound file from resorces" NAME="playSound">
+     <PARAMETER DESC="The name of the file" DEFAULT="" TYPE="FileName"/>
+    </METHOD>
+    <METHOD DESC="Execute system command" NAME="sys">
+     <PARAMETER DESC="Command and arguments list" DEFAULT="" TYPE="LIST"/>
+    </METHOD>
+    <METHOD DESC="Read number of milliseconds since last reset" NAME="millis">
+     <RETURN DESC="Millseconds" DEFAULT="millis" TYPE="INTEGER" NAME="millis"/>
+    </METHOD>
+    <METHOD DESC="Write information to the simulation log" NAME="debug">
+     <PARAMETER DESC="List of strings or numbers to write" DEFAULT="" TYPE="LIST"/>
+    </METHOD>
+   </DRIVER>
+  </PERIPHERAL>
+  <PERIPHERAL DESC="File Storage" VALID="1" ENABLED="1" BUILTIN="1" TYPE="STORAGE" ID="{6a5c1ab7-6408-4997-82d5-6315eb269fdf}" NAME="storage" FILE="Raspberry Pi 3" EID="00000001" OPTIONAL="1">
+   <INTERFACE EXTERNAL="FS" OBJECT="FileStore">
+    <SETUP NAME="begin"/>
+    <STORAGE ELEMENT="U1" UID="00000001" NAME="MANIFEST" EID="00000001" VALUE="C:/Users/LENOVO/AppData/Local/Temp/VSM Studio/b2e956d868aa42d69333276b7c0c9492/RPI3/Debug/RESOURCE.DAT"/>
+   </INTERFACE>
+   <DRIVER HEADER="FileStore">
+    <ENUMERATION NAME="MODE">
+     <CONSTANT NAME="READ" VALUE="'r'"/>
+     <CONSTANT NAME="WRITE" VALUE="'w'"/>
+     <CONSTANT NAME="APPEND" VALUE="'a'"/>
+    </ENUMERATION>
+    <FUNCTION DESC="Return true if a file exists">
+     <PARAMETER DESC="Path to file" TYPE="STRING" NAME="name"/>
+     <RETURN TYPE="BOOLEAN"/>
+    </FUNCTION>
+    <METHOD DESC="Open a file" NAME="open">
+     <PARAMETER DESC="Path to file" TYPE="STRING" NAME="name"/>
+     <PARAMETER DESC="Path to file" DEFAULT="READ" TYPE="MODE" NAME="mode"/>
+     <RETURN DEFAULT="file" TYPE="HANDLE" NAME="file"/>
+    </METHOD>
+    <METHOD DESC="Close a file" NAME="close">
+     <PARAMETER DESC="File handle" TYPE="HANDLE" NAME="file"/>
+    </METHOD>
+    <METHOD DESC="Delete a file" NAME="remove">
+     <PARAMETER DESC="Path to file" TYPE="STRING" NAME="name"/>
+    </METHOD>
+    <METHOD DESC="Change current directory" NAME="chdir">
+     <PARAMETER DESC="New current directory" DEFAULT="&quot;/vsm&quot;" TYPE="STRING" NAME="name"/>
+    </METHOD>
+    <METHOD DESC="Create a new directory" NAME="mkdir">
+     <PARAMETER DESC="Name of new directory" TYPE="STRING" NAME="name"/>
+    </METHOD>
+    <METHOD DESC="Remove a directory" NAME="rmdir">
+     <PARAMETER DESC="Name of directory to remove" TYPE="STRING" NAME="name"/>
+    </METHOD>
+    <METHOD DESC="Flush data in file" NAME="flush">
+     <PARAMETER DESC="File handle" TYPE="HANDLE" NAME="file"/>
+    </METHOD>
+    <METHOD DESC="Read delimited data" NAME="read">
+     <PARAMETER DESC="File handle" TYPE="HANDLE" NAME="file"/>
+     <PARAMETER DESC="List of variables to read." BYREF="1" TYPE="LIST"/>
+    </METHOD>
+    <METHOD DESC="Read a line from the file." NAME="readln">
+     <PARAMETER DESC="File handle" TYPE="HANDLE" NAME="file"/>
+     <RETURN DESC="String to contain the line." DEFAULT="Line" TYPE="STRING" NAME="line"/>
+    </METHOD>
+    <METHOD DESC="Write comma delimited data" NAME="write">
+     <PARAMETER DESC="File handle" TYPE="HANDLE" NAME="file"/>
+     <PARAMETER DESC="List of strings or numbers to write" DEFAULT="" TYPE="LIST"/>
+    </METHOD>
+    <METHOD DESC="Write comma delimited data with terminating newline." NAME="writeln">
+     <PARAMETER DESC="File handle" TYPE="HANDLE" NAME="file"/>
+     <PARAMETER DESC="List of strings or numbers to write" DEFAULT="" TYPE="LIST"/>
+    </METHOD>
+    <METHOD DESC="Print data without newline." NAME="print">
+     <PARAMETER DESC="File handle" TYPE="HANDLE" NAME="file"/>
+     <PARAMETER DESC="List of strings or numbers to print" DEFAULT="" TYPE="LIST"/>
+    </METHOD>
+    <METHOD DESC="Print data with terminating newline." NAME="println">
+     <PARAMETER DESC="File handle" TYPE="HANDLE" NAME="file"/>
+     <PARAMETER DESC="List of strings or numbers to print" DEFAULT="" TYPE="LIST"/>
+    </METHOD>
+   </DRIVER>
+  </PERIPHERAL>
+  <PERIPHERAL DESC="VFP Server" VALID="1" ENABLED="1" BUILTIN="1" TYPE="SERVER" ID="{bca7deda-bc74-49a0-9951-e6f823fdf82e}" NAME="server" FILE="Raspberry Pi 3" EID="00000001" OPTIONAL="1">
+   <INTERFACE EXTERNAL="VFP" OBJECT="VfpServer">
+    <SETUP NAME="begin">
+     <PROPERTY ELEMENT="U1" TYPE="INTEGER" UID="00000001" NAME="PORT" EID="00000001" VALUE=""/>
+    </SETUP>
+    <!--<LOOP NAME="poll"/>-->
+    <SERVER ELEMENT="U1" TYPE="VFP" UID="00000001" TRANSPORT="ETHERNET"/>
+   </INTERFACE>
+   <DRIVER HEADER="VFP">
+    <REQUIRE HEADER="Controls"/>
+    <REQUIRE HEADER="server"/>
+    <REQUIRE HEADER="zeroconf"/>
+    <RESOURCE FILE="Vfp/showlog.py"/>
+    <INTERRUPT DESC="Page Reload" HOOK="attachReloadHandler"/>
+    <INTERRUPT DESC="Control Event" HOOK="attachRequestHandler"/>
+    <METHOD DESC="Set the document title" NAME="setTitle">
+     <PARAMETER TYPE="STRING" NAME="title"/>
+    </METHOD>
+    <FUNCTION DESC="Return true if an event is pending for a particular object">
+     <PARAMETER TYPE="STRING" NAME="object"/>
+     <RETURN TYPE="BOOLEAN"/>
+    </FUNCTION>
+    <!--                  
+         <METHOD NAME="set" DESC="Set the state of a virtual control">
+            <PARAMETER NAME="object" TYPE="STRING" />
+            <PARAMETER NAME="key" TYPE="STRING" />
+            <PARAMETER NAME="LIST" TYPE="VARIANT" DESC="Property values"/>
+         </METHOD>
+         
+         <METHOD NAME="call" DESC="Call a method of a virtual control">
+            <PARAMETER NAME="object" TYPE="STRING" />
+            <PARAMETER NAME="method" TYPE="STRING" />
+            <PARAMETER TYPE="LIST" DESC="List of arguments."/>
+         </METHOD>
+         -->
+    <!-- Will be called automatically by LOOP construct -->
+    <METHOD DESC="Wait a specified number of milliseconds and poll for requests" NAME="waitForRequests">
+     <PARAMETER DESC="Delay in milliseconds" DEFAULT="1000" TYPE="INTEGER" NAME="timeout"/>
+    </METHOD>
+    <!-- Needs to be called if the application will use time values -->
+    <METHOD DESC="Wait until the linux side has obtained the time from the internet." NAME="waitForTimeServer"/>
+    <!-- Write to the debug console -->
+    <METHOD DESC="Write information to the remote debugging (telnet) console." NAME="debug">
+     <PARAMETER DESC="Items to output." TYPE="LIST"/>
+    </METHOD>
+    <RESOURCE FILE="Vfp/transport.js"/>
+    <RESOURCE DESC="Html Files" TYPE="htm"/>
+    <RESOURCE DESC="Panel Files" TYPE="svg"/>
+    <RESOURCE DESC="Bitmap Files" TYPE="png"/>
+    <RESOURCE DESC="Javascript Files" TYPE="js"/>
+   </DRIVER>
+  </PERIPHERAL>
+  <PERIPHERAL DESC="Timer" VALID="1" ENABLED="0" BUILTIN="1" TYPE="TIMER" ID="{82afd203-7425-4c7d-a2d9-833d39dcd721}" NAME="timer" FILE="Raspberry Pi 3" EID="00000001" OPTIONAL="1">
+   <INTERFACE EXTERNAL="timer" OBJECT="Timer">
+    <LOOP NAME="poll"/>
+   </INTERFACE>
+   <DRIVER HEADER="timer">
+    <METHOD DESC="Initialize the timer with a specified period" NAME="initialize">
+     <PARAMETER DESC="Period in milliseconds" DEFAULT="1000" TYPE="INTEGER" NAME="period"/>
+    </METHOD>
+    <METHOD DESC="Set a new period in milliseconds" NAME="setPeriod">
+     <PARAMETER DESC="Period in milliseconds" TYPE="INTEGER" NAME="period"/>
+    </METHOD>
+    <METHOD DESC="Start the timer" NAME="start"/>
+    <METHOD DESC="Stop the timer" NAME="stop"/>
+    <METHOD DESC="Restart the timer at count of zero" NAME="restart"/>
+    <METHOD DESC="Resume counting" NAME="resume"/>
+    <METHOD DESC="Read the timer value in milliseconds" NAME="read">
+     <RETURN DESC="Counter value" DEFAULT="count" TYPE="INTEGER" NAME="state"/>
+    </METHOD>
+    <INTERRUPT DESC="Timer Match" HOOK="attachInterrupt" PERIODIC="1"/>
+   </DRIVER>
+  </PERIPHERAL>
+  <PERIPHERAL DESC="I2C Port" VALID="1" ENABLED="0" BUILTIN="1" TYPE="I2C" ID="{e91201df-29b2-40eb-84d7-0442eaeb8fec}" NAME="i2c" FILE="Raspberry Pi 3" EID="00000001" OPTIONAL="1">
+   <INTERFACE EXTERNAL="I2C" OBJECT="I2c"/>
+   <DRIVER HEADER="Ports">
+    <!-- Port 0 = pins 27,28. Port 1 = Pins 3,5 -->
+    <METHOD DESC="Send 8 bit data" NAME="transmit">
+     <PARAMETER DESC="I2C address" TYPE="INTEGER" NAME="Address"/>
+     <PARAMETER DESC="Command to send" TYPE="INTEGER" NAME="Command"/>
+     <PARAMETER DESC="Data to transmit" TYPE="LIST"/>
+    </METHOD>
+    <METHOD DESC="Send 8 bit data" NAME="receive">
+     <PARAMETER DESC="I2C address" TYPE="INTEGER" NAME="Address"/>
+     <PARAMETER DESC="Command to send" TYPE="INTEGER" NAME="Comand"/>
+     <PARAMETER BYREF="1" TYPE="LIST" NAME="Data"/>
+    </METHOD>
+   </DRIVER>
+  </PERIPHERAL>
+  <PERIPHERAL DESC="SPI Port" VALID="1" ENABLED="0" BUILTIN="1" TYPE="SPI" ID="{bf0af49a-b174-4716-977a-3f4cb692f356}" NAME="spi" FILE="Raspberry Pi 3" EID="00000001" OPTIONAL="1">
+   <INTERFACE EXTERNAL="SPI" OBJECT="SPI"/>
+   <DRIVER HEADER="Ports">
+    <!-- SPI Driver -->
+    <ENUMERATION NAME="CLOCK">
+     <CONSTANT NAME="CLOCK1MHZ" VALUE="1000000L"/>
+     <CONSTANT NAME="CLOCK4MHZ" VALUE="4000000L"/>
+     <CONSTANT NAME="CLOCK8MHZ" VALUE="8000000L"/>
+    </ENUMERATION>
+    <METHOD DESC="Configure the SPI Hardware" NAME="setup">
+     <PARAMETER DESC="SPI Clock Speed" DEFAULT="7629" TYPE="INTEGER" NAME="clock"/>
+     <PARAMETER DESC="Set the device to talk to." DEFAULT="0" TYPE="INTEGER" NAME="device"/>
+    </METHOD>
+    <METHOD DESC="Send and receive data" NAME="transfer">
+     <PARAMETER DESC="List of variables to send and receive" BYREF="1" TYPE="LIST"/>
+    </METHOD>
+    <METHOD DESC="Send command data, received data is ignored" NAME="send">
+     <PARAMETER DESC="Data to transmit" TYPE="LIST"/>
+    </METHOD>
+    <METHOD DESC="Ignore send command data, Receive data" NAME="receive">
+     <PARAMETER DESC="Length of data to receive" TYPE="INTEGER" NAME="length"/>
+     <RETURN DESC="Data to receive" TYPE="LIST" NAME="data"/>
+    </METHOD>
+   </DRIVER>
+  </PERIPHERAL>
+  <PERIPHERAL DESC="UART Port" VALID="1" ENABLED="0" BUILTIN="1" TYPE="UART" ID="{257a4e02-fd37-43d3-a700-88363c00e741}" NAME="uart" FILE="Raspberry Pi 3" EID="00000001" OPTIONAL="1">
+   <INTERFACE EXTERNAL="UART" OBJECT="UART"/>
+   <DRIVER HEADER="Ports">
+    <ENUMERATION NAME="BASE">
+     <CONSTANT NAME="DECIMAL" VALUE="10"/>
+     <CONSTANT NAME="BINARY" VALUE="2"/>
+     <CONSTANT NAME="OCTAL" VALUE="8"/>
+     <CONSTANT NAME="HEX" VALUE="16"/>
+    </ENUMERATION>
+    <METHOD DESC="Sets up the UART" NAME="setup">
+     <PARAMETER DESC="UART speed" TYPE="INTEGER" NAME="speed"/>
+    </METHOD>
+    <METHOD DESC="Input String" NAME="input">
+     <PARAMETER DESC="Enable Echo" DEFAULT="TRUE" TYPE="BOOLEAN" NAME="Echo"/>
+     <RETURN DEFAULT="input" TYPE="STRING" NAME="Data"/>
+    </METHOD>
+    <METHOD DESC="Prints data along UART" NAME="print">
+     <PARAMETER DESC="String to print" TYPE="LIST"/>
+    </METHOD>
+    <METHOD DESC="Prints data along UART" NAME="println">
+     <PARAMETER DESC="String to print" TYPE="LIST"/>
+    </METHOD>
+    <METHOD DESC="Send a single character" NAME="send">
+     <PARAMETER DESC="Character to send" TYPE="STRING" NAME="Data"/>
+    </METHOD>
+    <METHOD DESC="Receive a single character" NAME="recv">
+     <RETURN TYPE="STRING" NAME="Data"/>
+    </METHOD>
+    <METHOD DESC="Set the base to use for integer values." NAME="setBase">
+     <PARAMETER DESC="Number base" TYPE="BASE" NAME="base"/>
+    </METHOD>
+    <METHOD DESC="Set the number of places to use for floating point values." NAME="setPlaces">
+     <PARAMETER DESC="Number of decimal places" DEFAULT="2" TYPE="INTEGER" NAME="places"/>
+    </METHOD>
+   </DRIVER>
+  </PERIPHERAL>
+  <PERIPHERAL DESC="Twitter Bot" VALID="1" ENABLED="0" BUILTIN="1" TYPE="TWITTER" ID="{bdc5f366-d309-4180-b217-cfbac3e6e466}" NAME="twitter" FILE="Raspberry Pi 3" EID="00000001" OPTIONAL="1">
+   <INTERFACE EXTERNAL="TWITTER" OBJECT="Twitter"/>
+   <DRIVER HEADER="InternetCommunication">
+    <METHOD DESC="SetUp the Twitter Bot" NAME="setup">
+     <PARAMETER DESC="Consumer API key" TYPE="STRING" NAME="CustomerKey"/>
+     <PARAMETER DESC="Consumer API secret key" TYPE="STRING" NAME="CustomerSecret"/>
+     <PARAMETER DESC="Access token" TYPE="STRING" NAME="Token"/>
+     <PARAMETER DESC="Access token secret" TYPE="STRING" NAME="SecretToken"/>
+    </METHOD>
+    <METHOD DESC="Simple Text Tweet" NAME="tweet">
+     <PARAMETER DESC="Message to Tweet" TYPE="STRING" NAME="Message"/>
+    </METHOD>
+    <METHOD DESC="Tweeting Image and Text" NAME="tweetImage">
+     <PARAMETER DESC="Message to Tweet" TYPE="STRING" NAME="Message"/>
+     <PARAMETER DESC="Image to Tweet" TYPE="STRING" NAME="Image"/>
+    </METHOD>
+    <METHOD DESC="Tweeting Video and Text" NAME="tweetVideo">
+     <PARAMETER DESC="Message to Tweet" TYPE="STRING" NAME="Message"/>
+     <PARAMETER DESC="Video to Tweet" TYPE="STRING" NAME="Video"/>
+    </METHOD>
+    <METHOD DESC="Look for Tweet" NAME="searchFor">
+     <PARAMETER DESC="Message to look for" TYPE="STRING" NAME="Query"/>
+     <RETURN DEFAULT="FullMessage" TYPE="STRING" NAME="Message"/>
+     <RETURN DEFAULT="UserName" TYPE="STRING" NAME="User"/>
+     <RETURN DEFAULT="TweetTime" TYPE="TIME" NAME="Date"/>
+    </METHOD>
+    <METHOD DESC="Look for Tweet with image" NAME="searchImage">
+     <PARAMETER DESC="Message to look for" TYPE="STRING" NAME="Query"/>
+     <PARAMETER DESC="Name to allocate image" TYPE="STRING" NAME="FileName"/>
+     <RETURN DEFAULT="FullMessage" TYPE="STRING" NAME="Message"/>
+     <RETURN DEFAULT="UserName" TYPE="STRING" NAME="User"/>
+     <RETURN DEFAULT="TweetTime" TYPE="TIME" NAME="Date"/>
+     <RETURN DEFAULT="ImageReceived" TYPE="STRING" NAME="ImageName"/>
+    </METHOD>
+   </DRIVER>
+  </PERIPHERAL>
+  <PERIPHERAL DESC="SMT Email" VALID="1" ENABLED="0" BUILTIN="1" TYPE="EMAIL" ID="{4677fbaa-f9cd-43a8-a71e-c64058e4706f}" NAME="email" FILE="Raspberry Pi 3" EID="00000001" OPTIONAL="1">
+   <INTERFACE EXTERNAL="EMAIL" OBJECT="Email"/>
+   <DRIVER HEADER="InternetCommunication">
+    <METHOD DESC="Log in for email" NAME="emailLogIn">
+     <PARAMETER DESC="you@gmail.com        Email Address sending from" TYPE="STRING" NAME="Email"/>
+     <PARAMETER DESC="Password123          Password to email account" TYPE="STRING" NAME="Password"/>
+     <PARAMETER DESC="smtp.gmail.com:465   Email server" TYPE="STRING" NAME="Server"/>
+    </METHOD>
+    <METHOD DESC="Send 8 bit data" NAME="emailStructure">
+     <PARAMETER DESC="Email Subject" TYPE="STRING" NAME="Subject"/>
+     <PARAMETER DESC="Content to put into email" TYPE="STRING" NAME="EmailContent"/>
+     <PARAMETER DESC="Recipients email address" TYPE="LIST" NAME="RecipientEmail"/>
+    </METHOD>
+    <METHOD DESC="Send 8 bit data" NAME="emailAttachment">
+     <PARAMETER DESC="Files to attach" TYPE="LIST" NAME="FileName"/>
+    </METHOD>
+    <METHOD DESC="Creates and sends the email" NAME="sendEmail"/>
+   </DRIVER>
+  </PERIPHERAL>
+ </HARDWARE>
+</PROJECT>
